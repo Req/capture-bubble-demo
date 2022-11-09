@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            padding: 1em;
+        }
+        div {
+            padding: 1em;
+            background: pink;
+            text-align: center;
+        }
+    </style>
+
+    <script>
+        function addEventListeners() {
+            const body = document.querySelector("body")
+            const div = document.querySelector("div")
+            const img = document.querySelector("img")
+
+            // Capture phase
+            body.addEventListener("click", () => console.log("Body capture"), true)
+            div.addEventListener("click", () => console.log("Div capture"), true)
+            img.addEventListener("click", () => console.log("Img capture"), true)
+
+            // Bubble phase (default)
+            body.addEventListener("click", () => console.log("Body bubble"))
+            div.addEventListener("click", () => console.log("Div bubble"))
+            img.addEventListener("click", () => console.log("Img bubble"))
+
+            // Now all 3 elements have 2 event listeners each
+        }
+
+        // When the DOM has finished loading (when JS knows about all elements)
+        // Only then we want to add our event listeners
+        // Because before that, JavaScript can't actually see the elements
+        // Note how this event listener is added to the DOM Document itself
+        document.addEventListener("DOMContentLoaded", addEventListeners)
+    </script>
+
+</head>
+<body>
+    <div>
+        <img src="http://placekitten.com/400/400" alt>
+    </div>
+</body>
+
+</html>
